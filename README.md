@@ -1,2 +1,2 @@
 # Personal-Projects
-This repository contains the personal projects that I did during my free time. 
+This repository contains the personal projects that I worked on during my free time. 
