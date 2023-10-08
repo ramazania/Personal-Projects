@@ -4,7 +4,7 @@ import os
 import time
 
 # Define the path to the CSV file
-CSV_FILE_PATH = "internship_applications.csv"
+CSV_FILE_PATH = "job_applications.csv"
 
 # Check if the CSV file exists, and create it if it doesn't
 if not os.path.exists(CSV_FILE_PATH):
@@ -12,7 +12,7 @@ if not os.path.exists(CSV_FILE_PATH):
         writer = csv.writer(f)
         writer.writerow(["Job Portal", "E-mail", "Username", "Company", "Date Applied", "Status", "Location", "Job Field"])
 
-# Prompt the user to enter the internship application details
+# Prompt the user to enter the job application details
 job_portal = input("Job Portal: ")
 email = input("E-mail: ")
 username = input("Username: ")
