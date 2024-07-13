@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List Web App</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+
+    <form id="taskForm">
+        <input type="text" id="taskInput" placeholder="Enter task...">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <ul id="taskList">
+        <!-- Tasks will be dynamically added here -->
+    </ul>
+
+    <script>
+        document.getElementById('taskForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get task input value
+            var taskInput = document.getElementById('taskInput').value.trim();
+            if (!taskInput) return;  // If input is empty, do nothing
+            
+            // Make POST request to Flask API
+            fetch('/api/tasks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ task: taskInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Task added:', data.task);
+                // Add task to UI
+                var taskList = document.getElementById('taskList');
+                var li = document.createElement('li');
+                li.textContent = data.task;
+                taskList.appendChild(li);
+                // Clear input field
+                document.getElementById('taskInput').value = '';
+            })
+            .catch(error => {
+                console.error('Error adding task:', error);
+            });
+        });
+    </script>
+</body>
+</html>
